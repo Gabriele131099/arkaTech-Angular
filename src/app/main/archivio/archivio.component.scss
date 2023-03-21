@@ -1,0 +1,8 @@
+section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    &>app-card-pg{
+        margin: 20px;
+    }
+}

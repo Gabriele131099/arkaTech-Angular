@@ -1,0 +1,16 @@
+  <div class="container">
+   
+    <main class="main">
+        <form action="">
+            <div>
+                <label for="">Razza: </label> <br>
+                <select name="" id="">
+                    <option value="---">Seleziona una Razza</option>
+                    <option *ngFor="let race of arrayRace" [value]="race">{{race}}</option>
+                </select>
+                
+            </div>
+        </form>
+        <button (click)="createPg()">crea pg</button>
+    </main>
+  </div>

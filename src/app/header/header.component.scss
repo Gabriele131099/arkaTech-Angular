@@ -1,0 +1,35 @@
+#sideBar{
+    width: 10vw;
+    height: 100vh;
+    background-color: rgb(22, 22, 54);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0px;
+    color: white;
+    ul{
+        height: 50vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        li{
+        list-style-type: none;
+        button{
+            padding: 10px 15px;
+            &:hover{
+                background-color: rgb(29, 29, 59);
+                color: white;
+                border: white;
+            }
+        }
+    }
+}
+}
+button#svg{
+    background-color: transparent;
+    border: none;
+}
+svg{
+    transform: rotate(180deg);
+}
