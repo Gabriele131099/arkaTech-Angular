@@ -16,6 +16,7 @@ export class HeaderComponent {
   }
   
   logOut(){
+    
     localStorage.removeItem( 'User');
     window.location.href="http://localhost:4200/login"
   }

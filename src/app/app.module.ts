@@ -14,7 +14,8 @@ import { SignUpComponent } from './log/sign-up/sign-up.component';
 import { CardUserComponent } from './main/cards/card-user/card-user.component';
 import { HomeLogComponent } from './logUser/home-log/home-log.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import {HttpClientModule} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,10 +30,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     CardUserComponent,
     HomeLogComponent
   ],
-  imports: [
+  imports: [ 
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
+  
+
   ],
   providers: [],
   bootstrap: [AppComponent]

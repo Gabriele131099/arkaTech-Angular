@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
@@ -7,19 +8,39 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  
   profileForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
   });
   arrayUsers: any;
-  ngOnInit() {}
+  constructor(private httpClient : HttpClient){}
+  ngOnInit() {
+    this.getData()
+    this.logOut()
+  }
   async getData() {
-    await fetch('http://localhost:8080/users')
-      .then((response) => response.json())
-      .then((toDoListArray) => {
-        this.arrayUsers = toDoListArray;
-        console.log(this.arrayUsers);
-      });
+    this.httpClient.get('http://localhost:8080/users').subscribe(
+      response =>{
+        this.arrayUsers = response
+        console.log(response)
+      }
+    )
+   
+  }
+  logOut(){
+    if ( localStorage.getItem('User')==null) {
+      
+    }else{
+      if (confirm("CONFERMI IL LOGOUT?")) {
+        
+        localStorage.removeItem( 'User');
+       window.location.href="http://localhost:4200/login"
+      }else{
+        window.location.href="http://localhost:4200/home"
+      }
+    }
+   
   }
   log() {
     this.getData()
