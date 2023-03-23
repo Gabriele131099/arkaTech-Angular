@@ -16,6 +16,7 @@ import { HomeLogComponent } from './logUser/home-log/home-log.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
+import { AboutComponent } from './main/about/about.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,8 @@ import { HttpClient } from '@angular/common/http';
     LoginComponent,
     SignUpComponent,
     CardUserComponent,
-    HomeLogComponent
+    HomeLogComponent,
+    AboutComponent
   ],
   imports: [ 
     BrowserModule,
