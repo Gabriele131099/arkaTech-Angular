@@ -14,6 +14,11 @@ export class SignUpComponent {
     password: new FormControl('', [Validators.required]),
 
   });
+  jsonUser:any = {
+    username:this.addUserForm.controls['username'].value,
+    email:this.addUserForm.controls['email'].value,
+    password:this.addUserForm.controls['password'].value,
+  }
   constructor(private httpClient : HttpClient){}
   createUser(){
     // let flagEmailExist:any="false";
@@ -37,8 +42,13 @@ export class SignUpComponent {
     //         alert("Username esistente")
     //       }
     //     });
+let jsonUser:any = {
+  username:this.addUserForm.controls['username'].value,
+  email:this.addUserForm.controls['email'].value,
+  password:this.addUserForm.controls['password'].value,
+}
 
-    this.httpClient.post<any>('http://localhost:8080/users', this.addUserForm.value).subscribe((response: any) => {
+    this.httpClient.post<any>('http://localhost:8080/users', jsonUser).subscribe((response: any) => {
       console.log(response);
     });
   

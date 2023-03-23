@@ -11,7 +11,7 @@ String raceAndFeatures, String featuresAndTraits, String aClass)  -->
             Back
             </button>
      
-         <form [formGroup]="createPgForm" >
+         <form [formGroup]="createPgForm" (submit)="createPg()">
         
         
         <fieldset *ngIf="positionForm ==0">
@@ -33,10 +33,10 @@ String raceAndFeatures, String featuresAndTraits, String aClass)  -->
           </div>
           
           <div>
-            <label for="background">Formazione:</label>
-          <select name="" id=""  formControlName="background">
-            <option *ngFor="let race of arrayRace" [value]="race">
-                {{race}}
+            <label for="background">Background:</label>
+          <select name="" id=""  formControlName="background" (change)="getDataBgForType()">
+            <option *ngFor="let bg of arrayBackground" [value]="bg">
+                {{bg }}
             </option>
           </select>
           </div>
@@ -45,17 +45,11 @@ String raceAndFeatures, String featuresAndTraits, String aClass)  -->
             <label for="alignment">Liniaggio:</label>
             <select name="" id="" formControlName="alignment">
               <option *ngFor="let race of arrayRace" [value]="race">
-                  {{race}}
+                  {{race }}
               </option>
             </select>
          </div>
-         <div>
-            <label>Sesso:</label>
-            <input type="radio" formControlName="gender" id="male" value="male" name="pgGenre"><label for="male" class="light">Maschio</label><br>
-            <input type="radio" formControlName="gender" id="female" value="female" name="pgGenre"><label for="female" class="light">Femmina</label> <br>
-            <input type="radio" formControlName="gender" id="neutral" value="neutral" name="pgGenre"><label for="neutral" class="light">No-Binary</label>
-            
-         </div>
+        
          
         </fieldset>
         
@@ -64,17 +58,32 @@ String raceAndFeatures, String featuresAndTraits, String aClass)  -->
           <legend><span class="number">2</span>Caratteristiche </legend>
          
           <label for="personalityTraits">Tratti Personali:</label>
-          <textarea id="bioP" name="bioPg" formControlName="personalityTraits"></textarea>
+          <select name="" id=""  formControlName="personalityTraits" >
+            <option *ngFor="let bgType of arrayBackgroundText.personalityTraits" [value]="bgType">
+                {{bgType}}
+            </option>
+          </select>
           
           <label for="ideals">Ideali:</label>
-          <textarea id="ideals" name="ideals" formControlName="ideals"></textarea>
+          <select name="ideals" id="ideals"  formControlName="ideals" >
+            <option *ngFor="let bgType of arrayBackgroundText.ideals" [value]="bgType">
+                {{bgType}}
+            </option>
+          </select>
         
           <label for="bonds">Legami:</label>
-          <textarea id="bonds" name="bonds" formControlName="bonds"></textarea>
+          <select name="" id=""  formControlName="bonds" >
+            <option *ngFor="let bgType of arrayBackgroundText.bonds" [value]="bgType">
+                {{bgType}}
+            </option>
+          </select>
 
           <label for="flaws">Difetti:</label>
-          <textarea id="flaws" name="flaws" formControlName="flaws"></textarea>
-
+          <select name="" id=""  formControlName="flaws" >
+            <option *ngFor="let bgType of arrayBackgroundText.flaws" [value]="bgType">
+                {{bgType}}
+            </option>
+          </select>
           
         </fieldset>
         <fieldset *ngIf="positionForm ==2">
