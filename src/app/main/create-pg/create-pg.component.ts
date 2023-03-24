@@ -10,7 +10,9 @@ import { PgServiceService } from 'src/app/service/pg-service.service';
   styleUrls: ['./create-pg.component.scss']
 })
 export class CreatePgComponent {
-  constructor(public pgService:PgServiceService) { }
+
+  flagLoadData:boolean = false;
+  constructor(public pgService:PgServiceService, private http:HttpClient) { }
   
   createPgForm = new FormGroup({
     characterName: new FormControl('', [Validators.required]),
@@ -28,13 +30,17 @@ export class CreatePgComponent {
 
   positionForm:number=0;
 
-  arrayBackground:any =  this?.pgService?.getDataBg().catch((error:string)=>console.log(error));
-  arrayRace:any = this?.pgService?.getDataRaces().catch((error:string)=>console.log(error));
+  arrayBackground:any 
+  arrayRace:any 
   
-  arrayBackgroundText:any;
-  arrayRaceAttribute:any;
-  ngOnInit() {
-   
+  arrayBackgroundText:any = [];
+  arrayRaceAttribute:any = [];
+  async ngOnInit() {
+    await this.getDataRaces();
+    await this.getDataBg();
+   setTimeout(() => {
+    this.flagLoadData = true
+   }, 1000);
   }
 
   next(){
@@ -44,15 +50,56 @@ export class CreatePgComponent {
     this.positionForm--
   }
 
-  getDataBgForType(){
-    let s:String|undefined = this.createPgForm.controls['background'].value?.toString();
-    this.arrayBackgroundText = this.pgService.getDataBgForType(s);
-  }
-  getDataRaceAttribute(){
-    let s:String|undefined = this.createPgForm.controls['race'].value?.toString();
-    this.arrayRaceAttribute = this.pgService.getDataRaceAttribute(s);
-  }
 
+ //bg
+ async  getDataBg() {
+  this.http.get('http://localhost:8080/bg').subscribe(
+   response =>{
+    this.arrayBackground = response
+   }
+   )
+   
+}
+getDataBgForType() {
+ if (this.createPgForm.controls['background'].value==undefined) {
+   alert("errore")
+ }else{
+   this.http.get('http://localhost:8080/bg/'+this.createPgForm.controls['background'].value).subscribe(
+    response =>{
+     console.log(response)
+     this.arrayBackgroundText = response
+    }
+  )
+ }
+ console.log(name)
+}
+//races
+async getDataRaces() {
+  this.http.get('http://localhost:8080/races').subscribe(
+   (response) =>{
+     console.log(response)
+  setTimeout(() => {
+    this.arrayRace = response
+  }, 1000);
+   
+   }
+ )
+
+}
+getDataRaceAttribute() {
+ if (this.createPgForm.controls['race'].value==undefined) {
+   alert("errore")
+ }else{
+   this.http.get('http://localhost:8080/race/'+this.createPgForm.controls['race'].value).subscribe(
+    response =>{
+      console.log(response)
+     this.arrayRaceAttribute = response
+    }
+  )
+
+ }
+ console.log(name)
+}
   createPg(){
     /** Usage returns typed data */
     // const data = fetch(`http://localhost:8080/pg`, {

@@ -48,9 +48,12 @@ let jsonUser:any = {
   password:this.addUserForm.controls['password'].value,
 }
 
-    this.httpClient.post<any>('http://localhost:8080/users', jsonUser).subscribe((response: any) => {
-      console.log(response);
-    });
-  
-      }
+
+
+this.httpClient
+      .post<any>('http://localhost:8080/users', jsonUser)
+      .subscribe((response: any) => {
+        console.log(response);
+      });
+    }
 }

@@ -15,7 +15,11 @@ export class ArchivioComponent {
     this.user =  window?.localStorage?.getItem("User");
   console.log(JSON.parse(this.user));
   this.user = JSON.parse(this.user);
-
+  this.httpClient.get('http://localhost:8080/'+this.user.id).subscribe(
+    response =>{
+      this.user = response;
+      console.log(this.user)
+    })
   }
   async getData() {
     this.httpClient.get('http://localhost:8080/pg').subscribe(
@@ -60,7 +64,7 @@ export class ArchivioComponent {
           aClass:""
         })
          this.arrayPg =  this.arrayPg.filter((ele:any)=>ele.userId==this.user.id)
-        console.log(response)
+        console.log(this.arrayPg)
       }
     )
   

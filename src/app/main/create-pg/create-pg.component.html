@@ -1,4 +1,5 @@
-  <div class="container">
+<app-spinner *ngIf="!flagLoadData"></app-spinner>
+  <div *ngIf="flagLoadData" class="container">
    
     <main class="main">
 <!-- String alignment, 
@@ -25,8 +26,8 @@ String raceAndFeatures, String featuresAndTraits, String aClass)  -->
           
           <div>
             <label for="race">Razza:</label>
-          <select name="" id="">
-            <option *ngFor="let race of arrayRace" [value]="race" formControlName="race">
+          <select name="" id="race" formControlName="race">
+            <option *ngFor="let race of arrayRace" [value]="race" >
                 {{race}}
             </option>
           </select>
@@ -60,14 +61,14 @@ String raceAndFeatures, String featuresAndTraits, String aClass)  -->
           <label for="personalityTraits">Tratti Personali:</label>
           <select name="" id=""  formControlName="personalityTraits" >
             <option *ngFor="let bgType of arrayBackgroundText.personalityTraits" [value]="bgType">
-                {{bgType}}
+                {{bgType }}
             </option>
           </select>
           
           <label for="ideals">Ideali:</label>
           <select name="ideals" id="ideals"  formControlName="ideals" >
             <option *ngFor="let bgType of arrayBackgroundText.ideals" [value]="bgType">
-                {{bgType}}
+                {{bgType }}
             </option>
           </select>
         

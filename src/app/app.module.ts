@@ -17,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { AboutComponent } from './main/about/about.component';
+import { SpinnerComponent } from './animation/spinner/spinner.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,8 @@ import { AboutComponent } from './main/about/about.component';
     SignUpComponent,
     CardUserComponent,
     HomeLogComponent,
-    AboutComponent
+    AboutComponent,
+    SpinnerComponent
   ],
   imports: [ 
     BrowserModule,
