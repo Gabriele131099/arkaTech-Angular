@@ -15,9 +15,12 @@ export class LoginComponent {
   });
   arrayUsers: any;
   constructor(private httpClient : HttpClient){}
+  arrayPg:any
   ngOnInit() {
     this.getData()
     this.logOut()
+    this.arrayPg = JSON.parse(localStorage.getItem("arrayPg") || "[]")
+    console.log(this.arrayPg)
   }
   async getData() {
     this.httpClient.get('http://localhost:8080/users').subscribe(
@@ -53,11 +56,13 @@ export class LoginComponent {
     console.log(user);
     if (user.password == this.profileForm.controls['password'].value) {
       console.log('loggato');
-      window.location.href = 'http://localhost:4200/';
       localStorage.setItem( 'User',JSON.stringify(user));
-      let arrayPg:any = localStorage.getItem( 'arrayPg');
-      console.log(arrayPg)
-      localStorage.setItem( 'arrayPg',JSON.stringify(arrayPg));
+      if (this.arrayPg.lengh>0) {
+        console.log(this.arrayPg)
+      }else{
+        localStorage.setItem("arrayPg", JSON.stringify([]));
+      }
+      window.location.href = 'http://localhost:4200/';
     } else {
       alert('dati non validi');
     }

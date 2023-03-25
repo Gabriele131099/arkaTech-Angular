@@ -22,12 +22,12 @@ export class CreatePgComponent {
     ideals: new FormControl('', [Validators.required]),
     bonds: new FormControl('', [Validators.required]),
     flaws: new FormControl('', [Validators.required]),
-    STR: new FormControl(0, [Validators.required,Validators.max(20), Validators.min(0)]),
-    DEX: new FormControl(0, [Validators.required]),
-    CON: new FormControl(0, [Validators.required]),
-    INT: new FormControl(0, [Validators.required]),
-    WIS: new FormControl(0, [Validators.required]),
-    CHA: new FormControl(0, [Validators.required]),
+    STR: new FormControl(4, [Validators.required,Validators.max(20), Validators.min(0)]),
+    DEX: new FormControl(4, [Validators.required]),
+    CON: new FormControl(4, [Validators.required]),
+    INT: new FormControl(4, [Validators.required]),
+    WIS: new FormControl(4, [Validators.required]),
+    CHA: new FormControl(4, [Validators.required]),
   });
   getCharacterName(){
    return this.createPgForm.controls['characterName'].value;;
@@ -96,13 +96,19 @@ return this.createPgForm.controls['CHA'].value;
   arrayBackgroundText:any = [];
   arrayRaceAttribute:any = [];
   arrayPg :any
+  user:any
   async ngOnInit() {
     await this.getDataRaces();
     await this.getDataBg();
     await this.getDataClasses();
+    this.user =  JSON.parse(localStorage.getItem("User") || "");
+    console.log(this.user)
     this.flagLoadData = true
     console.log(localStorage.getItem( 'arrayPg'))
-    this.arrayPg = localStorage.getItem('arrayPg')==null? [] : localStorage.getItem('arrayPg');
+
+    
+    this.arrayPg = JSON.parse(localStorage.getItem("arrayPg") || "[]");
+    
     console.log(this.arrayPg)
   }
 
@@ -111,11 +117,15 @@ return this.createPgForm.controls['CHA'].value;
       case 0:
         if (this.getAlignment()!="" && this.getCharacterName()!="" && this.getAlignment()!="" && this.getRace()!="" ) {
           this.positionForm++
+        }else{
+          alert("Compila il form prima")
         }
         break;
         case 1:
           if (this.getCHA()!=0 && this.getCON()!=0 && this.getDEX()!=0 && this.getINT()!=0 ) {
             this.positionForm++
+          }else{
+            alert("Compila il form prima")
           }
           break;
       case 2:
@@ -213,6 +223,7 @@ getDataRaceAttribute() {
     //   console.log(res)
     // });
     let jsonPg:any={
+      userId:this.user.id,
       characterName:this.createPgForm.controls['characterName'].value,
       race:this.createPgForm.controls['race'].value,
       alignment:this.createPgForm.controls['alignment'].value,
@@ -229,8 +240,10 @@ getDataRaceAttribute() {
       WIS: this.createPgForm.controls['WIS'].value,
       CHA: this.createPgForm.controls['CHA'].value,
     }
+    console.log(jsonPg)
+    console.log(this.arrayPg)
     this.arrayPg.push(jsonPg)
-    localStorage.setItem("arrayPg",this.arrayPg)
+    localStorage.setItem("arrayPg", JSON.stringify(this.arrayPg));
     console.log(jsonPg)
   }
 }
