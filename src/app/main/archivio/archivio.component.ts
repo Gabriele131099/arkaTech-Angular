@@ -63,10 +63,20 @@ export class ArchivioComponent {
           featuresAndTraits:"", 
           aClass:""
         })
-         this.arrayPg =  this.arrayPg.filter((ele:any)=>ele.userId==this.user.id)
-        console.log(this.arrayPg)
+
+        
       }
-    )
-  
+
+    )     
+         this.arrayPg= [];
+          if (localStorage.getItem('arrayPg')==null) {
+            localStorage.setItem("names", JSON.stringify([]));
+
+          }else{
+            this.arrayPg =localStorage.getItem('arrayPg');
+          }
+
+         this.arrayPg = this.arrayPg.filter((ele:any)=>ele.userId==this.user.id)
+        console.log(this.arrayPg)
     }
 }

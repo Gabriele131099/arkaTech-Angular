@@ -131,7 +131,7 @@ return this.createPgForm.controls['CHA'].value;
  async  getDataClasses() {
   this.http.get('http://localhost:8080/classes').subscribe(
    response =>{
-    this.arrayAligmen = response
+    this.arrayClasses = response
    }
    )
    
@@ -225,6 +225,8 @@ getDataRaceAttribute() {
       WIS: this.createPgForm.controls['WIS'].value,
       CHA: this.createPgForm.controls['CHA'].value,
     }
+    this.arrayPg.push(jsonPg)
+    localStorage.setItem("arrayPg",this.arrayPg)
     console.log(jsonPg)
   }
 }
