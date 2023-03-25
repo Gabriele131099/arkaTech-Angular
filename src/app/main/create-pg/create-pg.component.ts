@@ -95,11 +95,13 @@ return this.createPgForm.controls['CHA'].value;
   arrayClasses:any
   arrayBackgroundText:any = [];
   arrayRaceAttribute:any = [];
+  arrayPg :any
   async ngOnInit() {
     await this.getDataRaces();
     await this.getDataBg();
     await this.getDataClasses();
     this.flagLoadData = true
+    this.arrayPg = localStorage.getItem( 'arrayPg');
   }
 
   next(){
@@ -129,7 +131,7 @@ return this.createPgForm.controls['CHA'].value;
  async  getDataClasses() {
   this.http.get('http://localhost:8080/classes').subscribe(
    response =>{
-    this.arrayBackground = response
+    this.arrayAligmen = response
    }
    )
    

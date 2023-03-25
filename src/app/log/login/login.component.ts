@@ -55,6 +55,7 @@ export class LoginComponent {
       console.log('loggato');
       window.location.href = 'http://localhost:4200/';
       localStorage.setItem( 'User',JSON.stringify(user));
+      localStorage.setItem( 'arrayUsers',JSON.stringify([]));
     } else {
       alert('dati non validi');
     }
