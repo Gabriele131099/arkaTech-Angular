@@ -101,7 +101,9 @@ return this.createPgForm.controls['CHA'].value;
     await this.getDataBg();
     await this.getDataClasses();
     this.flagLoadData = true
-    this.arrayPg = localStorage.getItem( 'arrayPg');
+    console.log(localStorage.getItem( 'arrayPg'))
+    this.arrayPg = localStorage.getItem('arrayPg')==null? [] : localStorage.getItem('arrayPg');
+    console.log(this.arrayPg)
   }
 
   next(){
@@ -111,12 +113,14 @@ return this.createPgForm.controls['CHA'].value;
           this.positionForm++
         }
         break;
-        case 0:
+        case 1:
           if (this.getCHA()!=0 && this.getCON()!=0 && this.getDEX()!=0 && this.getINT()!=0 ) {
             this.positionForm++
           }
           break;
-      
+      case 2:
+      this.positionForm++
+      break;
       default:
         break;
     }
