@@ -9,14 +9,19 @@ import { Component } from '@angular/core';
 export class ArchivioComponent {
   arrayPg: any;
   user:any
+  flagDownloadData:boolean = false;
   constructor(private httpClient:HttpClient){}
-  ngOnInit() {
-    this.getData()
+  async ngOnInit() {
+     this.getData()
  
-  this.user = JSON.parse(this.user);
-  this.httpClient.get('http://localhost:8080/'+this.user.id).subscribe(
+   this.user = JSON.parse(localStorage.getItem("User") || "");
+   setTimeout(() => {
+    this.flagDownloadData = true;
+    console.log(this.flagDownloadData)
+   }, 1000);
+    this.httpClient.get('http://localhost:8080/'+this.user.id).subscribe(
     response =>{
-      this.user = response;
+      this.user =  response;
       console.log(this.user)
     })
   }
@@ -68,7 +73,7 @@ export class ArchivioComponent {
 
     // )     
     this.arrayPg = JSON.parse(localStorage.getItem("arrayPg") || "[]");
-         this.arrayPg = this.arrayPg.filter((ele:any)=>ele.userId==this.user.id)
-        console.log(this.arrayPg)
+         this.arrayPg = this.arrayPg.filter((ele:any)=>ele.userId!=this.user.id)
+        
     }
 }

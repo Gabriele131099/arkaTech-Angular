@@ -101,14 +101,15 @@ return this.createPgForm.controls['CHA'].value;
     await this.getDataRaces();
     await this.getDataBg();
     await this.getDataClasses();
-    this.user =  JSON.parse(localStorage.getItem("User") || "");
+    
+    
     console.log(this.user)
     this.flagLoadData = true
     console.log(localStorage.getItem( 'arrayPg'))
 
     
     this.arrayPg = JSON.parse(localStorage.getItem("arrayPg") || "[]");
-    
+    this.user = JSON.parse(localStorage.getItem("User") || "");
     console.log(this.arrayPg)
   }
 
@@ -212,6 +213,10 @@ getDataRaceAttribute() {
  }
  console.log(name)
 }
+getNum(){
+  let num = Math.round(Math.random() * 1000000000000);
+  return num;
+}
   createPg(){
     /** Usage returns typed data */
     // const data = fetch(`http://localhost:8080/pg`, {
@@ -222,7 +227,9 @@ getDataRaceAttribute() {
     
     //   console.log(res)
     // });
+
     let jsonPg:any={
+      id:this.getNum().toString() +this.getNum().toString(),
       userId:this.user.id,
       characterName:this.createPgForm.controls['characterName'].value,
       race:this.createPgForm.controls['race'].value,
@@ -244,6 +251,7 @@ getDataRaceAttribute() {
     console.log(this.arrayPg)
     this.arrayPg.push(jsonPg)
     localStorage.setItem("arrayPg", JSON.stringify(this.arrayPg));
+
     console.log(jsonPg)
   }
 }
