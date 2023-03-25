@@ -110,7 +110,7 @@ return this.createPgForm.controls['CHA'].value;
         }
         break;
         case 0:
-          if (this.getCHA()!="" && this.getCON()!="" && this.getDEX()!="" && this.getINT()!="" && this.getWIS!="" ) {
+          if (this.getCHA()!=0 && this.getCON()!=0 && this.getDEX()!=0 && this.getINT()!=0 ) {
             this.positionForm++
           }
           break;
