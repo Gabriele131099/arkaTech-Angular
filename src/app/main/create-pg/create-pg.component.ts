@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PgServiceService } from 'src/app/service/pg-service.service';
 
@@ -13,44 +12,141 @@ export class CreatePgComponent {
 
   flagLoadData:boolean = false;
   constructor(public pgService:PgServiceService, private http:HttpClient) { }
-  
   createPgForm = new FormGroup({
     characterName: new FormControl('', [Validators.required]),
+    aClass: new FormControl('', [Validators.required]),
     race: new FormControl('', [Validators.required]),
-    alignment: new FormControl('', [Validators.required]),
     background: new FormControl(' ', [Validators.required]),
+    alignment: new FormControl('', [Validators.required]),
     personalityTraits: new FormControl('', [Validators.required]),
     ideals: new FormControl('', [Validators.required]),
     bonds: new FormControl('', [Validators.required]),
     flaws: new FormControl('', [Validators.required]),
-    raceAndFeatures: new FormControl('', [Validators.required]),
-    featuresAndTraits: new FormControl('', [Validators.required]),
-    aClass: new FormControl('', [Validators.required]),
+    STR: new FormControl(0, [Validators.required,Validators.max(20), Validators.min(0)]),
+    DEX: new FormControl(0, [Validators.required]),
+    CON: new FormControl(0, [Validators.required]),
+    INT: new FormControl(0, [Validators.required]),
+    WIS: new FormControl(0, [Validators.required]),
+    CHA: new FormControl(0, [Validators.required]),
   });
+  getCharacterName(){
+   return this.createPgForm.controls['characterName'].value;;
+  }
+  getaClass(){
+    return this.createPgForm.controls['aClass'].value;;
+  }
+  getAlignment(){
+    return this.createPgForm.controls['alignment'].value;;
+  }
+  getRace(){
+    return this.createPgForm.controls['race'].value;;
+  }
 
+
+getpersonalityTraits()
+{
+return this.createPgForm.controls['personalityTraits'].value;
+}
+getideals()
+{
+return this.createPgForm.controls['ideals'].value;
+}
+getbonds()
+{
+return this.createPgForm.controls['bonds'].value;
+}
+getflaws()
+{
+return this.createPgForm.controls['flaws'].value;
+}
+getDEX()
+{
+return this.createPgForm.controls['DEX'].value;
+}
+getCON()
+{
+return this.createPgForm.controls['CON'].value;
+}
+getINT()
+{
+return this.createPgForm.controls['INT'].value;
+}
+getWIS()
+{
+return this.createPgForm.controls['WIS'].value;
+}
+getCHA()
+{
+return this.createPgForm.controls['CHA'].value;
+}
   positionForm:number=0;
 
   arrayBackground:any 
   arrayRace:any 
-  
+  arrayAligmen:any = [
+   ' N',
+    'L/N',
+    'L/B',
+    'L/M',
+    'C/M',
+    'C/B',
+    'C/N' ,
+  ]
+  arrayClasses:any
   arrayBackgroundText:any = [];
   arrayRaceAttribute:any = [];
   async ngOnInit() {
     await this.getDataRaces();
     await this.getDataBg();
-   setTimeout(() => {
+    await this.getDataClasses();
     this.flagLoadData = true
-   }, 1000);
   }
 
   next(){
-    this.positionForm++
+    switch (this.positionForm) {
+      case 0:
+        if (this.getAlignment()!="" && this.getCharacterName()!="" && this.getAlignment()!="" && this.getRace()!="" ) {
+          this.positionForm++
+        }
+        break;
+        case 0:
+          if (this.getCHA()!="" && this.getCON()!="" && this.getDEX()!="" && this.getINT()!="" && this.getWIS!="" ) {
+            this.positionForm++
+          }
+          break;
+      
+      default:
+        break;
+    }
+   
   }
   back(){
     this.positionForm--
   }
 
-
+  
+  //classes
+ async  getDataClasses() {
+  this.http.get('http://localhost:8080/classes').subscribe(
+   response =>{
+    this.arrayBackground = response
+   }
+   )
+   
+}
+getDataClassesForType() {
+ if (this.createPgForm.controls['background'].value==undefined) {
+   alert("errore")
+ }else{
+   this.http.get('http://localhost:8080/classes/'+this.createPgForm.controls['aClass'].value).subscribe(
+    response =>{
+     console.log(response)
+     this.arrayBackgroundText = response
+    }
+  )
+ }
+ console.log(name)
+}
  //bg
  async  getDataBg() {
   this.http.get('http://localhost:8080/bg').subscribe(
@@ -118,11 +214,14 @@ getDataRaceAttribute() {
       personalityTraits:this.createPgForm.controls['personalityTraits'].value,
       ideals:this.createPgForm.controls['ideals'].value,
       bonds:this.createPgForm.controls['bonds'].value,
-      flaws:this.createPgForm.controls['flaws'].value,
-      raceAndFeatures:this.createPgForm.controls['raceAndFeatures'].value,
-      featuresAndTraits:this.createPgForm.controls['featuresAndTraits'].value,
+      flaws:this.createPgForm.controls['flaws'
+    ].value,
       aClass:this.createPgForm.controls['aClass'].value,
-  
+      DEX: this.createPgForm.controls['DEX'].value,
+      CON: this.createPgForm.controls['CON'].value,
+      INT: this.createPgForm.controls['INT'].value,
+      WIS: this.createPgForm.controls['WIS'].value,
+      CHA: this.createPgForm.controls['CHA'].value,
     }
     console.log(jsonPg)
   }
