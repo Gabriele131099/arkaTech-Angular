@@ -115,6 +115,20 @@ nav ul li:after {
 	content: "Login";
 	line-height: 85px;
 }
+
+#dashboard:after { 
+	content: "Dash";
+	line-height: 88px;
+}
+#creaPg:after { 
+	content: "Crea";
+	line-height: 88px;
+}
+#archive:after { 
+	content: "Archivio";
+	line-height: 88px;
+}
+
 nav ul li:after{ 
 	display: flex;
     justify-content: center;
