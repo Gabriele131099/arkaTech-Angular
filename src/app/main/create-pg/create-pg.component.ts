@@ -247,11 +247,55 @@ getNum(){
       WIS: this.createPgForm.controls['WIS'].value,
       CHA: this.createPgForm.controls['CHA'].value,
     }
+
+    let jsondb = {
+     id : 34,
+     userId : 1,
+     characterName : 'characterNameidentifierName',
+     playerName : 'playerNameidentifierName',
+     race : 'raceidentifierName',
+     alignment : 'alignmentidentifierName',
+     classLevel : 1,
+     background : 'backgroundidentifierName',
+     personalityTraits : 'personalityTraitsidentifierName',
+     ideals : 'idealsidentifierName',
+     bonds : 'bondsidentifierName',
+     flaws : 'flawsidentifierName',
+     xp : 5,
+     str : 5,
+     strMod : 5,
+     dex : 5,
+     dexMod : 5,
+     con : 5,
+     conMod : 5,
+     oint : 5,
+     intMod : 5,
+     wis : 5,
+     wisMod : 5,
+     cha : 5,
+     chaMod : 5,
+     passive : 5,
+     profBonus : 5,
+     initiative : 5,
+     speed : 5,
+     hpMax : 5,
+     hdTotal : 5,
+     hd : 5,
+     raceBonuses : 'raceBonusesidentifierName',
+     raceAndFeatures : 'raceAndFeaturesidentifierName',
+     featuresAndTraits : 'featuresAndTraitsidentifierName',
+      Class : 'aClassidentifierName'
+    }
     console.log(jsonPg)
     console.log(this.arrayPg)
     this.arrayPg.push(jsonPg)
     localStorage.setItem("arrayPg", JSON.stringify(this.arrayPg));
-
+    this.http
+    .post<any>('http://localhost:8080/pg', jsondb)
+    .subscribe((response: any) => {
+      console.log(response);
+    });
+  
     console.log(jsonPg)
   }
 }

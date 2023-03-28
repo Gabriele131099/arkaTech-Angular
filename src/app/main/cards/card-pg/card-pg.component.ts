@@ -23,4 +23,11 @@ export class CardPgComponent {
       console.log(this.arrayPg)
       location.href="http://localhost:4200/archivio"
   }
+  arrayCompare:any = []
+
+  
+  addInCompare(pg:any){
+    this.arrayCompare.push(pg)
+    console.log(this.arrayCompare)
+  }
 }

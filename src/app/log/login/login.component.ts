@@ -19,7 +19,7 @@ export class LoginComponent {
   ngOnInit() {
     this.getData()
     this.logOut()
-    this.arrayPg = JSON.parse(localStorage.getItem("arrayPg") || "[]")
+  
     console.log(this.arrayPg)
   }
   async getData() {
