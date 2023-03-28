@@ -6,6 +6,7 @@ import { HomeLogComponent } from './logUser/home-log/home-log.component';
 import { AboutComponent } from './main/about/about.component';
 import { ArchivioComponent } from './main/archivio/archivio.component';
 import { CardUserComponent } from './main/cards/card-user/card-user.component';
+import { CompareComponent } from './main/compare/compare.component';
 import { CreatePgComponent } from './main/create-pg/create-pg.component';
 import { HomeComponent } from './main/home/home.component';
 
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'home', component:CardUserComponent },
   { path: 'crea', component: CreatePgComponent }, 
   { path: 'archivio', component: ArchivioComponent }, 
+  { path: 'compare', component: CompareComponent }, 
   { path: 'aboutUs', component: AboutComponent }, 
   { path: 'login', component: LoginComponent },
   { path: 'signUp', component: SignUpComponent },

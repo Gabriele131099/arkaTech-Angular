@@ -18,6 +18,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { AboutComponent } from './main/about/about.component';
 import { SpinnerComponent } from './animation/spinner/spinner.component';
+import { CompareComponent } from './main/compare/compare.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,8 @@ import { SpinnerComponent } from './animation/spinner/spinner.component';
     CardUserComponent,
     HomeLogComponent,
     AboutComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    CompareComponent
   ],
   imports: [ 
     BrowserModule,

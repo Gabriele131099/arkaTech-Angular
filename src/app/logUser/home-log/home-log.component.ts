@@ -7,7 +7,8 @@ import { Component } from '@angular/core';
 })
 export class HomeLogComponent {
   user:any;
-  flagLog:boolean=false;
+  flagLog:boolean=false
+  flagPopUp:boolean=false
   ngOnInit() {
    
     let url = window.location.href.split("/")[3]
@@ -17,5 +18,14 @@ export class HomeLogComponent {
       window.location.href= "http://localhost:4200/login"
     }
     
+  }
+
+  openPopUp(){
+    this.flagPopUp=true
+    console.log(this.flagPopUp)
+  }
+  closePopUp(){
+    this.flagPopUp=false
+    console.log(this.flagPopUp)
   }
 }

@@ -69,7 +69,7 @@ nav ul {
     max-height: 100vh;
     overflow: hidden;
 }
-svg{
+svg,img{
     width: 40px;
     height: 40px;
     fill: black;
@@ -128,7 +128,10 @@ nav ul li:after {
 	content: "Archivio";
 	line-height: 88px;
 }
-
+#compare:after { 
+	content: "Compara";
+	line-height: 88px;
+}
 nav ul li:after{ 
 	display: flex;
     justify-content: center;
